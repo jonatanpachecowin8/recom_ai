@@ -5,7 +5,26 @@ const router = express.Router();
 
 const personalizeController = new AWSPersonalizeController();
 
-// Ruta para obtener recomendaciones para un usuario específico
+// Ruta para obtener recomendaciones simuladas
+router.get('/api/getRecomendacionSimulada/:userId', async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    // Simular la obtención de recomendaciones para el usuario
+    const recomendacionesSimuladas = [
+      { itemId: 'producto_123', score: 0.95 },
+      { itemId: 'producto_456', score: 0.85 },
+      { itemId: 'producto_789', score: 0.75 }
+    ];
+
+    res.json({ recomendaciones: recomendacionesSimuladas });
+  } catch (error) {
+    console.error('Error al procesar la solicitud de prueba:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
+
+// Ruta para obtener recomendaciones reales desde AWS Personalize
 router.get('/api/getRecomendacion/:userId', async (req, res) => {
   try {
     const userId = req.params.userId;
@@ -18,7 +37,7 @@ router.get('/api/getRecomendacion/:userId', async (req, res) => {
 
     res.json({ recomendaciones });
   } catch (error) {
-    console.error('Error al procesar la solicitud:', error);
+    console.error('Error al procesar la solicitud real:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 });
