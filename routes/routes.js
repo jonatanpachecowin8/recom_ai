@@ -1,45 +1,25 @@
 const express = require('express');
 const AWSPersonalizeController = require('../controllers/AWSPersonaliceController');
-
 const router = express.Router();
 
-const personalizeController = new AWSPersonalizeController();
-
-// Ruta para obtener recomendaciones simuladas
-router.get('/api/getRecomendacionSimulada/:userId', async (req, res) => {
+router.get('/api/getRecomendacionS/:userId', async (req, res) => {
   try {
-    const userId = req.params.userId;
-
-    // Simular la obtención de recomendaciones para el usuario
-    const recomendacionesSimuladas = [
-      { itemId: 'producto_123', score: 0.95 },
-      { itemId: 'producto_456', score: 0.85 },
-      { itemId: 'producto_789', score: 0.75 }
+    const recomendacionesS = [
+      { itemId: '1', score: 0.95 },
+      { itemId: '5', score: 0.85 },
+      { itemId: '6', score: 0.75 },
+      { itemId: '11', score: 0.65 },
+      { itemId: '25', score: 0.55 },
+      { itemId: '16', score: 0.25 }
     ];
 
-    res.json({ recomendaciones: recomendacionesSimuladas });
+    res.json({ recomendaciones: recomendacionesS });
   } catch (error) {
-    console.error('Error al procesar la solicitud de prueba:', error);
+    console.error('Error al procesar la solicitud de recomendaciones.', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 });
 
-// Ruta para obtener recomendaciones reales desde AWS Personalize
-router.get('/api/getRecomendacion/:userId', async (req, res) => {
-  try {
-    const userId = req.params.userId;
-
-    // ARN de la campaña en AWS Personalize
-    const campaignArn = 'arn:aws:personalize:...:campaign/MiCampaña'; // Reemplaza con tu ARN
-
-    // Obtener recomendaciones para el usuario
-    const recomendaciones = await personalizeController.obtenerRecomendacionesParaUsuario(campaignArn, userId);
-
-    res.json({ recomendaciones });
-  } catch (error) {
-    console.error('Error al procesar la solicitud real:', error);
-    res.status(500).json({ error: 'Error interno del servidor' });
-  }
-});
+router.get('/api/getRecomendacion/:userId', AWSPersonalizeController.obtenerRecomendacionesParaUsuario);
 
 module.exports = router;
