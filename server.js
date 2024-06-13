@@ -1,17 +1,12 @@
-// server.js
-
-const dotenv = require('dotenv');
-dotenv.config();
-
 const express = require('express');
-const routes = require('./routes/routes');
-
+const { recommendProducts } = require('./controllers/recomendaciones');
 const app = express();
-
+const port = 3000;
+const routes = require('./routes/routes');
 
 app.use('/', routes);
 
-app.listen(3000, () => {
-  console.log('Servidor escuchando en el puerto 3000');
-});
 
+app.listen(port, () => {
+  console.log(`Recommendation app listening at http://localhost:${port}`);
+});
