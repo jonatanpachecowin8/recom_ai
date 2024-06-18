@@ -44,3 +44,4 @@ function recommendProducts(userId, k = 2) {
 }
 
 module.exports = { recommendProducts };
+

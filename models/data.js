@@ -155,3 +155,4 @@ const recomendacionesS = [
 ];
 
 module.exports = { users, products, recomendacionesS };
+

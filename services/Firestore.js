@@ -2,7 +2,6 @@ const admin = require('firebase-admin');
 const fs = require('fs');
 const { parse } = require('json2csv');
 
-// Inicializar Firebase Admin SDK
 const serviceAccount = require('../config/google-services.json');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

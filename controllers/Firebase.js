@@ -13,3 +13,4 @@ controller.obtenerDatosYExportarCSV(collectionName, fieldsToExport, csvFilePath)
     console.error('Error en el proceso:', error);
     process.exit(1);
   });
+  
