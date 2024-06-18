@@ -1,5 +1,5 @@
+/models/
 /node_modules/*
 /node_modules
-/models/*
 .env
 package-lock.json
